@@ -15,4 +15,12 @@ class Continent extends Model
     public $timestamps = false;
 
     use HasFactory;
+
+    public function regiones(){
+        return $this->hasMany(Region::class,'continent_id');
+    }
+
+    public function paises(){
+        return $this->hasManyThrough(Region::class,Country::class,'continent_id','region_id');
+    }
 }
